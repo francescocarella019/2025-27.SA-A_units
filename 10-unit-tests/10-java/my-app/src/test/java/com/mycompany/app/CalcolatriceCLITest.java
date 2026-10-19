@@ -63,9 +63,8 @@ class CalcolatriceCLITest {
         String risultato = output.toString(StandardCharsets.UTF_8);
 
         assertTrue(
-            risultato.contains("15"),
-            "L'output dovrebbe contenere il risultato 15. Output: " + risultato
-        );
+                risultato.contains("15"),
+                "L'output dovrebbe contenere il risultato 15. Output: " + risultato);
     }
 
     /*
@@ -77,16 +76,15 @@ class CalcolatriceCLITest {
      */
     @Test
     void test_calcola_sottrazione() {
-        CalcolatriceCLI calcolatrice = new CalcolatriceCLI();
+        CalcolatriceCLI calcolatrice = new CalcolatriceCLI(); 
 
-        calcolatrice.eseguiCalcolo("sottrazione", 5, 10);
+        calcolatrice.eseguiCalcolo("sottrazione", 5, 10); 
 
-        String risultato = output.toString(StandardCharsets.UTF_8);
+        String risultato = output.toString(StandardCharsets.UTF_8); 
 
         assertTrue(
-            risultato.contains("5"),
-            "L'output dovrebbe contenere il risultato 5. Output: " + risultato
-        );
+                risultato.contains("Risultato  : -5"),
+                "L'output dovrebbe contenere 'Risultato  : -5'. Output: " + risultato);
     }
 
     /*
@@ -105,9 +103,8 @@ class CalcolatriceCLITest {
         String risultato = output.toString(StandardCharsets.UTF_8);
 
         assertTrue(
-            risultato.contains("50"),
-            "L'output dovrebbe contenere il risultato 50. Output: " + risultato
-        );
+                risultato.contains("50"),
+                "L'output dovrebbe contenere il risultato 50. Output: " + risultato);
     }
 
     /*
@@ -126,9 +123,8 @@ class CalcolatriceCLITest {
         String risultato = output.toString(StandardCharsets.UTF_8);
 
         assertTrue(
-            risultato.contains("2.5"),
-            "L'output dovrebbe contenere il risultato 2.5. Output: " + risultato
-        );
+                risultato.contains("2.5"),
+                "L'output dovrebbe contenere il risultato 2.5. Output: " + risultato);
     }
 
     /*
@@ -142,16 +138,13 @@ class CalcolatriceCLITest {
     void test_calcola_divisione_col_0() {
         CalcolatriceCLI calcolatrice = new CalcolatriceCLI();
 
-        assertDoesNotThrow(() ->
-            calcolatrice.eseguiCalcolo("divisione", 10, 0)
-        );
+        assertDoesNotThrow(() -> calcolatrice.eseguiCalcolo("divisione", 10, 0));
 
         String risultato = output.toString(StandardCharsets.UTF_8);
 
         assertTrue(
-            risultato.contains("Errore: Impossibile dividere per zero!"),
-            "L'output dovrebbe contenere il messaggio di errore. Output: " + risultato
-        );
+                risultato.contains("Errore: Impossibile dividere per zero!"),
+                "L'output dovrebbe contenere il messaggio di errore. Output: " + risultato);
     }
 
     /*
@@ -170,22 +163,20 @@ class CalcolatriceCLITest {
         String risultato = output.toString(StandardCharsets.UTF_8);
 
         assertTrue(
-            risultato.contains(
-                "Operazione non riconosciuta. Scegli tra: " +
-                "addizione, sottrazione, moltiplicazione, divisione."
-            ),
-            "L'output dovrebbe contenere il messaggio per operazione non riconosciuta. "
-                + "Output: " + risultato
-        );
+                risultato.contains(
+                        "Operazione non riconosciuta. Scegli tra: " +
+                                "addizione, sottrazione, moltiplicazione, divisione."),
+                "L'output dovrebbe contenere il messaggio per operazione non riconosciuta. "
+                        + "Output: " + risultato);
     }
 
     /*
      * Scenario: test_main_cli_input_utente
      *
      * Given un flusso di input contenente:
-     *   - nome dell'operazione
-     *   - var1
-     *   - var2
+     * - nome dell'operazione
+     * - var1
+     * - var2
      *
      * When viene chiamata main
      * Then la calcolatrice legge gli input, applica trim e
@@ -196,8 +187,7 @@ class CalcolatriceCLITest {
         String input = "  AdDiZiOnE  \n10\n5\n";
 
         System.setIn(new ByteArrayInputStream(
-            input.getBytes(StandardCharsets.UTF_8)
-        ));
+                input.getBytes(StandardCharsets.UTF_8)));
 
         assertDoesNotThrow(() -> CalcolatriceCLI.main(new String[0]));
 
@@ -211,18 +201,16 @@ class CalcolatriceCLITest {
          * l'operazione non verrebbe riconosciuta.
          */
         assertTrue(
-            risultato.contains("15"),
-            "main dovrebbe eseguire l'addizione e stampare 15. Output: "
-                + risultato
-        );
+                risultato.contains("15"),
+                "main dovrebbe eseguire l'addizione e stampare 15. Output: "
+                        + risultato);
 
         /*
          * Verifica che main abbia effettivamente prodotto un output,
          * quindi abbia gestito il flusso CLI.
          */
         assertTrue(
-            !risultato.isBlank(),
-            "main dovrebbe produrre un output."
-        );
+                !risultato.isBlank(),
+                "main dovrebbe produrre un output.");
     }
 }
